@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.31" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.31">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <!-- Pinned below Microsoft.OpenApi 1.6.15+ to avoid emitting "openapi: 3.0.4", which the bundled Swagger UI in Swashbuckle 6.6.2 fails to render -->
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProductManagement.Application\ProductManagement.Application.csproj" />
+    <ProjectReference Include="..\ProductManagement.Infrastructure\ProductManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
