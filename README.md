@@ -28,8 +28,8 @@ dotnet run --project src/ProductManagement.Api
 
 Swagger is available at the URL printed by the API. The development connection string targets `ProductManagementDb` on `(localdb)\mssqllocaldb`. The API creates the database on first start and seeds these demo products and credentials:
 
-- Email: `demo@example.com`
-- Password: `Demo123!`
+- Email: `herleypuerta1`
+- Password: `pass1`
 
 ## Run the Angular client
 
