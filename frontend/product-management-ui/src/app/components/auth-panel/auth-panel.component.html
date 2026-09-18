@@ -1,0 +1,47 @@
+<header class="masthead">
+  @if (isLoggedIn()) {
+    <button class="quiet-button" type="button" (click)="onLogout()">Sign out</button>
+  }
+</header>
+
+@if (notice) {
+  <div class="notice" role="alert">
+    <span>{{ notice }}</span>
+    <button type="button" class="dismiss-button" aria-label="Dismiss notice" (click)="dismissNotice()">×</button>
+  </div>
+}
+@if (error) {
+  <div class="error" role="alert">
+    <span>{{ error }}</span>
+    <button type="button" class="dismiss-button" aria-label="Dismiss error" (click)="dismissError()">×</button>
+  </div>
+}
+
+@if (!isLoggedIn()) {
+  <section class="login-panel">
+    <div>
+      <p class="eyebrow">ACCESS</p>
+      <h2>Sign in to manage products</h2>
+    </div>
+    <form>
+      <label>
+        Email
+        <input
+          name="email"
+          type="email"
+          [(ngModel)]="email"
+          required>
+      </label>
+      <label>
+        Password
+        <input
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+          required>
+      </label>
+      <button class="primary-button" type="button" (click)="onLogin()">Sign in</button>
+      <button class="quiet-button" type="button" (click)="onRegister()">Register</button>
+    </form>
+  </section>
+}

@@ -24,8 +24,4 @@ public sealed class AuthController(IAuthService auth) : ControllerBase
         var response = await auth.LoginAsync(request, cancellationToken);
         return response is null ? Unauthorized() : Ok(response);
     }
-
-    [HttpGet("me")]
-    [Authorize]
-    public ActionResult<object> Me() => Ok(new { email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value });
 }

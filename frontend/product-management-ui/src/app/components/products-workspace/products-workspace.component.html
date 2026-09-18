@@ -1,0 +1,94 @@
+<section class="workspace">
+  @if (notice) {
+    <div class="notice" role="alert">
+      <span>{{ notice }}</span>
+      <button type="button" class="dismiss-button" aria-label="Dismiss notice" (click)="dismissNotice()">×</button>
+    </div>
+  }
+  @if (error) {
+    <div class="error" role="alert">
+      <span>{{ error }}</span>
+      <button type="button" class="dismiss-button" aria-label="Dismiss error" (click)="dismissError()">×</button>
+    </div>
+  }
+
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">CATALOG</p>
+      <h2>Products</h2>
+    </div>
+    <span class="count">{{ products.length }} listed</span>
+  </div>
+
+  <div class="product-grid">
+    @for (product of products; track product.id) {
+      <article class="product-row">
+        <div class="product-mark">{{ product.name.charAt(0) }}</div>
+        <div class="product-info">
+          <strong>{{ product.name }}</strong>
+          <span>SKU {{ product.id.slice(0, 8) }}</span>
+        </div>
+        <div class="metric">
+          <span>Price</span>
+          <strong>{{ product.price | currency }}</strong>
+        </div>
+        <div class="metric">
+          <span>Quantity</span>
+          <strong>{{ product.quantity }}</strong>
+        </div>
+        @if (isLoggedIn()) {
+          <div class="actions">
+            <button type="button" (click)="onEdit(product)">Edit</button>
+            <button type="button" (click)="onRemove(product)">Delete</button>
+          </div>
+        }
+      </article>
+    } @empty {
+      <p class="empty">No products have been added yet.</p>
+    }
+  </div>
+</section>
+
+@if (isLoggedIn()) {
+  <section class="editor">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{{ selectedId ? 'UPDATE ITEM' : 'NEW ITEM' }}</p>
+        <h2>{{ selectedId ? 'Edit product' : 'Add a product' }}</h2>
+      </div>
+    </div>
+    <form class="product-form" (ngSubmit)="onSave()">
+      <label>
+        Product name
+        <input
+          name="name"
+          [(ngModel)]="draft.name"
+          required>
+      </label>
+      <label>
+        Price
+        <input
+          name="price"
+          type="number"
+          min="0.01"
+          step="0.01"
+          [(ngModel)]="draft.price"
+          required>
+      </label>
+      <label>
+        Quantity
+        <input
+          name="quantity"
+          type="number"
+          min="0"
+          step="1"
+          [(ngModel)]="draft.quantity"
+          required>
+      </label>
+      <div class="form-actions">
+        <button class="primary-button" type="submit">{{ selectedId ? 'Save changes' : 'Create product' }}</button>
+        <button class="quiet-button" type="button" (click)="onReset()">Clear</button>
+      </div>
+    </form>
+  </section>
+}

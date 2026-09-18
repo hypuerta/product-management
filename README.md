@@ -31,8 +31,6 @@ Swagger is available at the URL printed by the API. The development connection s
 - Email: `demo@example.com`
 - Password: `Demo123!`
 
-Change the JWT key and connection string outside local development. Never commit production secrets.
-
 ## Run the Angular client
 
 ```powershell
@@ -58,4 +56,3 @@ npm run build
 - `POST /api/products`, `PUT /api/products/{id}`, and `DELETE /api/products/{id}` require a JWT.
 - `POST /api/auth/register` creates a user.
 - `POST /api/auth/login` returns a JWT.
-- `GET /api/auth/me` demonstrates an authenticated endpoint.
